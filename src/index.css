@@ -8,8 +8,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-z
-code {
+z code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
@@ -46,4 +45,7 @@ label {
 input {
   padding: 8px;
   margin-bottom: 12px;
+}
+h3 {
+  text-align: center;
 }
