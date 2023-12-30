@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavStyled, StyledLink } from './NavigationStyled';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { useSelector } from 'react-redux';
@@ -7,11 +7,17 @@ import { toast } from 'react-hot-toast';
 
 export const Nav = () => {
     const isLoggedIn = useSelector(selectIsLoggedIn);
+    const [isLoginSuccessNotified, setIsLoginSuccessNotified] = useState(false);
+
     useEffect(() => {
-        isLoggedIn
-            ? toast.success('You are logged in!')
-            : toast.error('You are logged out!');
-    }, [isLoggedIn]);
+        if (isLoggedIn && !isLoginSuccessNotified) {
+            toast.success('You are logged in!');
+            setIsLoginSuccessNotified(true);
+        } else if (!isLoggedIn && isLoginSuccessNotified) {
+            toast.error('You are logged out!');
+            setIsLoginSuccessNotified(false);
+        }
+    }, [isLoggedIn, isLoginSuccessNotified]);
 
     return (
         <NavStyled>
